@@ -1,0 +1,97 @@
+[
+    {
+        "id": "648357ac4a0dcee7",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "19a237fdcf9bc3d8",
+        "type": "amazon-echo-hub",
+        "z": "648357ac4a0dcee7",
+        "port": "8080",
+        "processinput": "1",
+        "discovery": true,
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "003a8f611abf5a1e"
+            ]
+        ]
+    },
+    {
+        "id": "003a8f611abf5a1e",
+        "type": "amazon-echo-device",
+        "z": "648357ac4a0dcee7",
+        "name": "Finger One",
+        "topic": "",
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "91508b344b7d92b2"
+            ]
+        ]
+    },
+    {
+        "id": "91508b344b7d92b2",
+        "type": "function",
+        "z": "648357ac4a0dcee7",
+        "name": "",
+        "func": "node.log (msg.payload);\nif (msg.payload.includes (\"on\")) {\n  msg.url = \"http://finger1/rotate?amt=110&delay=500\";\n} else if (msg.payload.includes (\"off\")) {\n  msg.url = \"http://finger1/rotate?amt=199&delay=500\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 340,
+        "wires": [
+            [
+                "17afdfa7b4d86d4e"
+            ]
+        ]
+    },
+    {
+        "id": "17afdfa7b4d86d4e",
+        "type": "http request",
+        "z": "648357ac4a0dcee7",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 950,
+        "y": 340,
+        "wires": [
+            [
+                "ba80ffae4766f7a7"
+            ]
+        ]
+    },
+    {
+        "id": "ba80ffae4766f7a7",
+        "type": "debug",
+        "z": "648357ac4a0dcee7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 340,
+        "wires": []
+    }
+]
