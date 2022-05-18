@@ -8,7 +8,7 @@ When traditional "smart" lights are turned off at their physical switch, they be
 ## Design
 This project is made up of these three components:
 
-1. A raspberrypi running a simple node red flow that listens for requests from Alexa, and turns them into requests that are passed on to an ESP8266. Communication with Alexa is provided by the node described [here.](https://flows.nodered.org/node/node-red-contrib-alexa-local)
+1. A raspberrypi running a simple node red flow that listens for requests from Alexa, and turns them into requests that are passed on to an ESP8266. Communication with Alexa is provided by the node described [here.](https://flows.nodered.org/node/node-red-contrib-amazon-echo)
 
 2. A ESP8266 that translates HTTP requests into servo motor controls, and the necessary power related electronics.
 
