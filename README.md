@@ -1,11 +1,14 @@
 # Alexa Finger
 ## Description
-A device that extends Alexa's presence in the physical world by enabling it to turn standard light switches on and off.
+When traditional "smart" lights are turned off at their physical switch, they become useless to a smart home device like Alexa. The Alexa Finger was created to circumvent this boolean limitation by interacting with lights at their switch level, just as a human would. This makes Alexa's ability to control a light impervious to the previously described scenario. Two things can occur in the event that the Alexa Finger attemps to move a switch to an already active state:
+
+1. If the physical switch is off and Alexa sends an off command, the light will turn on and back off.
+2. If the physical switch is on and Alexa sends an on command, the finger will rise up and make no contact with the switch. Then, feeling embarassed by it's failure it will slink back into its housing.
 
 ## Design
 This project is made up of these three components:
 
-1. A raspberrypi running a simple node red flow that listens for requests from Alexa, and then turns them into requests that are passed on to an ESP8266. Communication with Alexa is provided by the node described [here.](https://flows.nodered.org/node/node-red-contrib-alexa-local)
+1. A raspberrypi running a simple node red flow that listens for requests from Alexa, and turns them into requests that are passed on to an ESP8266. Communication with Alexa is provided by the node described [here.](https://flows.nodered.org/node/node-red-contrib-alexa-local)
 
 2. A ESP8266 that translates HTTP requests into servo motor controls, and the necessary power related electronics.
 
@@ -18,4 +21,13 @@ The Alexa communication node mentioned above suggests you run node red as root s
 $ sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
 $ sudo iptables -A PREROUTING -t nat -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 ```
-And I installed `iptables-persistent` to persist this setting between reboots.
+And I installed `iptables-persistent` to persist this setting between reboots. More info [here.](https://linuxconfig.org/how-to-make-iptables-rules-persistent-after-reboot-on-linux)
+
+## Examples
+The result of saying "Alexa, turn on the finger 1"
+
+<img src="./images/TurnOn.GIF" alt="turn on operation" width="200"/>
+
+The result of saying "Alexa, turn off the finger 1"
+
+<img src="./images/TurnOff.GIF" alt="turn off operation" width="200"/>
